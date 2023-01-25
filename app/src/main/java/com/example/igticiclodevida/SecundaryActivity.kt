@@ -1,27 +1,41 @@
 package com.example.igticiclodevida
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 
-class MainActivity : AppCompatActivity() {
+class SecundaryActivity : AppCompatActivity() {
+
+    private lateinit var button: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Log.i(TAG, "$ACTIVITY onCreate")
+        setContentView(R.layout.activity_secundary)
+
+        button = findViewById(R.id.btnResultado)
+        Log.i("IGTILOG", "$ACTIVITY onCreate")
+
         configurarListeners()
+
     }
 
     private fun configurarListeners() {
-        configurarListenerBtnNovaTela()
+        acaoBotaoVoltar()
+        acaoBotaoExibir()
     }
 
-    private fun configurarListenerBtnNovaTela() {
-        val button = findViewById<Button>(R.id.btnMainAction)
-        button.setOnClickListener{
-            startActivity(Intent(this, SecundaryActivity::class.java))
+    private fun acaoBotaoExibir() {
+        findViewById<Button>(R.id.btnNovo).setOnClickListener{
+            button.visibility = View.VISIBLE
+        }
+    }
+
+    private fun acaoBotaoVoltar() {
+
+          button.setOnClickListener{
+            finish()
         }
     }
 
@@ -60,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = "IGTILOG"
-        private val ACTIVITY = "MainActity::"
+        private val ACTIVITY = "SecundaryActivity::"
     }
+
 }
